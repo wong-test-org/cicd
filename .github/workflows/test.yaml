@@ -4,6 +4,7 @@ on:
   push:
     branches: ["main"]
 
+# 필요한 권한 정의: OIDC 토큰 생성할 때 필요한 권한
 permissions:
   id-token: write
 
@@ -15,13 +16,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+      
+      # 자격 증명 생성
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
+          # Role ARN과 Region은 Secret으로 관리 권장
           role-to-assume: arn:aws:iam::904817944199:role/sbae-cicd-test-role
           aws-region: ap-northeast-2
       
+      # 필요한 작업 수행
       - name: Verify credentials
         run: |
           aws s3 ls
