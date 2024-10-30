@@ -1,4 +1,4 @@
-name: list s3 test
+name: List s3 test
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Assume AWS Role
+    name: Assume AWS role
     runs-on: ubuntu-latest
 
     steps:
